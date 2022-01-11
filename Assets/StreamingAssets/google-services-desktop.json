@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "160343562701",
+    "project_id": "crash-sample-project",
+    "storage_bucket": "crash-sample-project.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:160343562701:android:a4376772e53276159c4c84",
+        "android_client_info": {
+          "package_name": "com.dreamo.crashsampleproject"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "160343562701-ng393p6j9erg76vk3nhv2r9dpcmpe6e8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAhd-_4vLqfMF3s-iHWpITg7_n4_2z8uSk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "160343562701-ng393p6j9erg76vk3nhv2r9dpcmpe6e8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
