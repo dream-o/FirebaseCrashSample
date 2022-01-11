@@ -20,6 +20,7 @@ public class LogScheduler
     private bool isSending = false;
     private string persistentDataPath;
     private string uriSchemeFile;
+    private string deviceUniqueID;
 
     public Firebase.DependencyStatus dependencyStatus = Firebase.DependencyStatus.UnavilableMissing;
     public bool CanSendLog { get; set; } = false;
@@ -28,6 +29,7 @@ public class LogScheduler
     {
         persistentDataPath = Application.persistentDataPath;
         uriSchemeFile = Uri.UriSchemeFile;
+        deviceUniqueID = SystemInfo.deviceUniqueIdentifier;
         
         string logDir = GetLogDir();
         if (false == Directory.Exists(logDir))
@@ -132,6 +134,8 @@ public class LogScheduler
             var files = Directory.GetFiles(GetLogDir(), "*.gz");
             if (files.Length < 1)
             {
+                Debug.Log($"remain log count : 0");
+                Thread.Sleep(TimeSpan.FromSeconds(10F));
                 continue;
             }
             
@@ -141,6 +145,7 @@ public class LogScheduler
                 continue;
             }
 
+            Debug.Log($"remain log count : {files.Length}");
             var targetFile = files[0];
             SendLogByStorage(targetFile);
         }
@@ -148,7 +153,7 @@ public class LogScheduler
 
     string GetRemotePath(string localPath)
     {
-        return $"{BASE_REMOTE_PATH}/{Path.GetFileName(localPath)}";
+        return $"{BASE_REMOTE_PATH}/{deviceUniqueID}/{Path.GetFileName(localPath)}";
     }
 
     private void SendLogByStorage(string localPath)
