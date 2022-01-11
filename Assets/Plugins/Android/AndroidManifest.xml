@@ -4,7 +4,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.unity3d.player"
     xmlns:tools="http://schemas.android.com/tools">
-    <application>
+    <application android:name="androidx.multidex.MultiDexApplication" android:allowNativeHeapPointerTagging="false">
         <activity android:name="com.unity3d.player.UnityPlayerActivity"
                   android:theme="@style/UnityThemeSelector">
             <intent-filter>
