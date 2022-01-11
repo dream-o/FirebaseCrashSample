@@ -19,6 +19,7 @@ public class LogScheduler
     private Thread logThread = null;
     private bool isSending = false;
     private string persistentDataPath;
+    private string uriSchemeFile;
 
     public Firebase.DependencyStatus dependencyStatus = Firebase.DependencyStatus.UnavilableMissing;
     public bool CanSendLog { get; set; } = false;
@@ -26,6 +27,7 @@ public class LogScheduler
     public void Initialize()
     {
         persistentDataPath = Application.persistentDataPath;
+        uriSchemeFile = Uri.UriSchemeFile;
         
         string logDir = GetLogDir();
         if (false == Directory.Exists(logDir))
@@ -162,7 +164,8 @@ public class LogScheduler
         
         var progressMonitor = new Firebase.Storage.StorageProgress<UploadState>(OnChangedProgressUpload);
 
-        reference.PutFileAsync(localPath, metaData, progressMonitor, CancellationToken.None).ContinueWithOnMainThread(
+        string uriPath = $"{uriSchemeFile}://{localPath}";
+        reference.PutFileAsync(uriPath, metaData, progressMonitor, CancellationToken.None).ContinueWithOnMainThread(
             (task) =>
             {
                 if (task.IsFaulted || task.IsCanceled)
